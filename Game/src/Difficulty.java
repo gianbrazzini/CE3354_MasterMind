@@ -8,7 +8,7 @@ public class Difficulty {
 
 	public void setEsayRows(int erows){
 
-		if(erows == 0){easyRows = MIN_ROWS;}
+		if(erows == 0){easyRows = MIN_ROWS;} // get MIN_ROWS if they insert 0
 		else{easyRows = erows;}
 	}
 
@@ -18,7 +18,7 @@ public class Difficulty {
 
 	public void setEasyGuesses(int eguesses){
 
-		if(eguesses == 0){easyGuesses = MIN_GUESSES;}
+		if(eguesses == 0){easyGuesses = MIN_GUESSES;} // get MIN_GUESSES if they insert 0
 		else{easyGuesses = eguesses;}
 	}
 
@@ -28,7 +28,7 @@ public class Difficulty {
 
 	public void setMediumRows(int mrows){
 
-		if(mrows == 0){mediumrows = MAX_ROWS;}
+		if(mrows == 0){mediumrows = MAX_ROWS;} // get MAX_ROWS if they insert 0
 		else{mediumrows = mrows;}
 	}
 
@@ -38,7 +38,7 @@ public class Difficulty {
 
 	public void setMediumGuesses(int mguesses){
 
-		if(mguesses == 0){mediumguesses = MIN_GUESSES;}
+		if(mguesses == 0){mediumguesses = MAX_GUESSES;} // get MAX_GUESSES if they insert 0
 		else{mediumguesses = mguesses;}
 	}
 
