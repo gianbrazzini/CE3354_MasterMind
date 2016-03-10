@@ -1,4 +1,4 @@
-
+//collen
 
 public class Board {
 	//linked list

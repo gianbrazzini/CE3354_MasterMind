@@ -1,6 +1,7 @@
 // Creates a turn object each time the player has to input a turn
 //edited
 // edit practice
+// edit practice 2
 
 public class Turn {
 
