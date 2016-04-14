@@ -24,30 +24,60 @@ public class TicTacToePlayer implements BaseGame
 
     public void startGame()
     {
+    	System.out.println("Please type 'H' to play Human vs Human, or 'C' to play Human vs Computer.\n");
+    	
         TicTacToe game = new TicTacToe();
         Scanner pInput = new Scanner(System.in);
+        
+        boolean vsAI = true;
+       
+        String aiChoice = null;
+        do
+        {
+        	aiChoice = pInput.nextLine();
+        	if(aiChoice.startsWith("H"))
+        	{
+        		vsAI = false;
+        	}
+        	else if(aiChoice.startsWith("C"))
+        	{
+        		vsAI = true;
+        	}
+        }while(aiChoice.startsWith("H") == false && aiChoice.startsWith("C") == false);
 
         // Used to store players' input
         int pRow, pCol;
         char currentPlayerMark = 'X';
         do
         {
-            System.out.println("Player " + currentPlayerMark + ", Enter row number(1, 2, or 3) and column number (1, 2, or 3): ");
-            pRow = pInput.nextInt() -  1;
-            pCol = pInput.nextInt() - 1;
-
-            // Input validation
-            while((pRow < 0 || pRow >= 3) || (pCol < 0 || pCol >= 3) || game.checkBox(pRow, pCol) == false)
-            {
-                System.out.println("This is invalid. Please enter a row number from 1 to 3 and a column number from 1 to 3: ");
-                pRow = pInput.nextInt() - 1;
-                pCol = pInput.nextInt() - 1;
-            }
+        	if(currentPlayerMark == 'O' && vsAI == true)
+        	{
+        		System.out.println("AI moving...");
+        		int[] move = makeAIMove(game, 'O', 0);
+        		pRow = move[1];
+        		pCol = move[2];
+        	}
+        	else
+        	{
+        		System.out.println("Player " + currentPlayerMark + ", Enter row number(1, 2, or 3) and column number (1, 2, or 3): ");
+        		pRow = pInput.nextInt() -  1;
+        		pCol = pInput.nextInt() - 1;
+        		
+        		// Input validation
+        		while((pRow < 0 || pRow >= 3) || (pCol < 0 || pCol >= 3) || game.checkBox(pRow, pCol) == false)
+        		{
+        			System.out.println("This is invalid. Please enter a row number from 1 to 3 and a column number from 1 to 3: ");
+        			pRow = pInput.nextInt() - 1;
+        			pCol = pInput.nextInt() - 1;
+        		}        		
+        	}
 
 
             game.placeMark(pRow, pCol, currentPlayerMark);   // Places the players mark down on the board
             game.printBoard();            // Prints the board
 
+            System.out.println("\n");		//Buffer space
+            
             // If a player wins end the game, else change players
             if((game.checkForWin() == true) && (currentPlayerMark == 'X'))
             {
@@ -69,12 +99,6 @@ public class TicTacToePlayer implements BaseGame
                     currentPlayerMark = 'X';
             }
 
-            if(currentPlayerMark == 'X')
-            {
-                int[] nextMove = makeAIMovePerfect(game, 'X', 0);
-                System.out.println("Next move could be [" + (nextMove[1]+1) + "," + (nextMove[2]+1) + "] with score of s=" + nextMove[0]);
-            }
-
         }while(game.isBoardFull() == false);
 
         if(game.isBoardFull() == true && game.checkForWin() == false)
@@ -85,26 +109,21 @@ public class TicTacToePlayer implements BaseGame
 
     public void printInstructions()
     {
-        System.err.println("Please implement 'printInstructions' in the TicTacToePlayer.java file!");
-    }
-
-    public void makeAIMove(TicTacToe board, char aiMarker, boolean perfectAI)
-    {
-        if(perfectAI)
-        {
-            int[] move = makeAIMovePerfect(board, aiMarker, 0);
-            board.placeMark(move[1], move[2], aiMarker);
-        }
-        else
-        {
-            //Need to immplement some dumber AI...
-        }
+        String instructions =
+        		"*************************     Welcome to Tic-Tac-Toe!     *************************\n"
+        	  + "Rules:\n"
+        	  + "\t1. Get 3 in a row.\n"
+        	  + "\t2. Don't let your opponent get 3 in a row.\n\n"
+        	  + "There are two modes:\n"
+        	  + "\tHuman vs Human\n"
+        	  + "\tHuman vs Computer\n";
+        System.out.println(instructions);
     }
 
     /**
      *
      */
-    private int[] makeAIMovePerfect(TicTacToe board, char aiMarker, int depth)
+    private int[] makeAIMove(TicTacToe board, char aiMarker, int depth)
     {
         if(board.checkForWin() || board.isBoardFull())
             return new int[]{calcScore(board, aiMarker), -1, -1};
@@ -133,7 +152,7 @@ public class TicTacToePlayer implements BaseGame
                 TicTacToe child = board.cloneGame();
                 child.placeMark(move[0], move[1], aiMarker);
 
-                currScore = makeAIMovePerfect(child, aiMarker, depth-1)[0];
+                currScore = makeAIMove(child, aiMarker, depth-1)[0];
                 if(currScore > bestScore[0])
                 {
                     bestScore[0] = currScore;
@@ -165,7 +184,7 @@ public class TicTacToePlayer implements BaseGame
                 TicTacToe child = board.cloneGame();
                 child.placeMark(move[0], move[1], otherPlayerMark);
 
-                currScore = makeAIMovePerfect(child, aiMarker, depth-1)[0];
+                currScore = makeAIMove(child, aiMarker, depth-1)[0];
                 if(currScore < bestScore[0])
                 {
                     bestScore[0] = currScore;
