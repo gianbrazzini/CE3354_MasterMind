@@ -1,3 +1,4 @@
+package games;
 import java.util.Scanner;
 
 class GameController
@@ -71,7 +72,7 @@ class GameController
                         //currentGame = new Mastermind();
                         break;
                     case 1:
-                        //currentGame = new Hangman();
+                        currentGame = new SEHangman();
                         break;
                     case 2:
                         currentGame = new TicTacToePlayer();
@@ -85,6 +86,7 @@ class GameController
 
             if(currentGame != null)
             {
+            	currentGame.printInstructions();
                 currentGame.startGame();
             }
 
