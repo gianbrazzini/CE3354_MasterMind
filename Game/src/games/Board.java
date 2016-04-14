@@ -1,3 +1,4 @@
+package games;
 //collen
 
 public class Board {

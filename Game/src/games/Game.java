@@ -1,3 +1,4 @@
+package games;
 public class Game {
 	
 	Board board;

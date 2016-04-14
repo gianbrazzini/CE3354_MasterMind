@@ -1,4 +1,4 @@
-
+package games;
 public class Difficulty {
 
 	// Sets max and min parameters for the class

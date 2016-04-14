@@ -1,3 +1,4 @@
+package games;
 import java.awt.Color; 
 
 public enum Pegs {
