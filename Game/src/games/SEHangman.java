@@ -22,15 +22,15 @@ public class SEHangman implements BaseGame
 	
 	public void printInstructions()
 	{
-		System.err.println("*******************************************************************"" +
-						   "*****************     Welcome to HANGMAN!!!!     ******************" + 
-						   "** Rules:														 **" + 
-						   "**        1) To win the game you need to enter all of the        **" + 
-						   "**           characters or guess the word on the final guess!    **" +
-						   "** 		  2) Please only enter one Character.  					 **" +
-						   "** 		  3) To exit the game enter the word \"-\".  		 **" +
-						   "** 		  4) And have fun!!!!				 					 **" +
-						   "*******************************************************************"" +);
+		System.out.println("*******************************************************************\n" +
+						   "*****************     Welcome to HANGMAN!!!!     ******************\n" + 
+						   "** Rules:                                                        **\n" + 
+						   "**        1) To win the game you need to enter all of the        **\n" + 
+						   "**           characters or guess the word on the final guess!    **\n" +
+						   "**        2) Please only enter one Character.                    **\n" +
+						   "**        3) To exit the game enter the word \"-\".                **\n" +
+						   "**        4) And have fun!!!!                                    **\n" +
+						   "*******************************************************************");
 	}
 
 	public void startGame()
@@ -139,12 +139,6 @@ public class SEHangman implements BaseGame
 			System.out.print( array[i] + " " );
 		}
 		System.out.println();
-	}
-
-	public static void main(String[] args)
-	{
-		SEHangman hangmanGame = new SEHangman();
-		hangmanGame.startGame();
 	}
 
 }
