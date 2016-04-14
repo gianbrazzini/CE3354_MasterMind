@@ -22,7 +22,15 @@ public class SEHangman implements BaseGame
 	
 	public void printInstructions()
 	{
-		System.err.println("Please implement 'printInstructions' in SEHangman.java");
+		System.err.println("*******************************************************************"" +
+						   "*****************     Welcome to HANGMAN!!!!     ******************" + 
+						   "** Rules:														 **" + 
+						   "**        1) To win the game you need to enter all of the        **" + 
+						   "**           characters or guess the word on the final guess!    **" +
+						   "** 		  2) Please only enter one Character.  					 **" +
+						   "** 		  3) To exit the game enter the word \"-\".  		 **" +
+						   "** 		  4) And have fun!!!!				 					 **" +
+						   "*******************************************************************"" +);
 	}
 
 	public void startGame()
@@ -30,7 +38,7 @@ public class SEHangman implements BaseGame
 		boolean startGame = true;
 		while (startGame)
 		{
-			System.out.println( "------------------- HANGMAN GAME -------------------" );
+			//System.out.println( "------------------- HANGMAN GAME -------------------" );
 			char[] randomWordToGuess = guesses.get( random.nextInt( guesses.size() ) ).toCharArray(); // google
 																										// ->
 																										// g,o,o,g,l,e
