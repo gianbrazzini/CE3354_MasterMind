@@ -3,35 +3,31 @@ import java.util.*;
 
 public class TicTacToePlayer implements BaseGame
 {
-    public static final int AI_OFF = 0,
-                            AI_SMART = 1,
-                            AI_DUMB = 2;
-
-    // 0 = off
-    // 1 = on (perfect)
-    // 2 = on (dumb)
-    int aiStatus;
 
     public TicTacToePlayer()
     {
-        aiStatus = 1;
+    	//Empty Constructor
     }
 
-    public TicTacToePlayer(int aiStatus)
-    {
-        this.aiStatus = aiStatus;
-    }
-
+    /**
+     * Implement from BasicGame.
+     * Starts and controls the tic-tac-toe game.
+     */
     public void startGame()
     {
+    	//Tell user to choose game mode.
     	System.out.println("Please type 'H' to play Human vs Human, or 'C' to play Human vs Computer.\n");
     	
-        TicTacToe game = new TicTacToe();
+    	//The board
+        TicTacToe tttBoard = new TicTacToe();
+        // Scanner to get user input
         Scanner pInput = new Scanner(System.in);
         
+        //Fields to track player AI choice
         boolean vsAI = true;
-       
         String aiChoice = null;
+        
+        //Get player choice
         do
         {
         	aiChoice = pInput.nextLine();
@@ -45,26 +41,27 @@ public class TicTacToePlayer implements BaseGame
         	}
         }while(aiChoice.startsWith("H") == false && aiChoice.startsWith("C") == false);
 
-        // Used to store players' input
+        // Used to store player's input
         int pRow, pCol;
         char currentPlayerMark = 'X';
         do
         {
+        	//If the player is against an AI, and it's the AI's turn:
         	if(currentPlayerMark == 'O' && vsAI == true)
         	{
         		System.out.println("AI moving...");
-        		int[] move = makeAIMove(game, 'O', 0);
+        		int[] move = makeAIMove(tttBoard, 'O', 0);
         		pRow = move[1];
         		pCol = move[2];
         	}
-        	else
+        	else	//Else, it must be a human's turn, so ask for their input
         	{
         		System.out.println("Player " + currentPlayerMark + ", Enter row number(1, 2, or 3) and column number (1, 2, or 3): ");
         		pRow = pInput.nextInt() -  1;
         		pCol = pInput.nextInt() - 1;
         		
         		// Input validation
-        		while((pRow < 0 || pRow >= 3) || (pCol < 0 || pCol >= 3) || game.checkBox(pRow, pCol) == false)
+        		while((pRow < 0 || pRow >= 3) || (pCol < 0 || pCol >= 3) || tttBoard.checkBox(pRow, pCol) == false)
         		{
         			System.out.println("This is invalid. Please enter a row number from 1 to 3 and a column number from 1 to 3: ");
         			pRow = pInput.nextInt() - 1;
@@ -72,19 +69,20 @@ public class TicTacToePlayer implements BaseGame
         		}        		
         	}
 
-
-            game.placeMark(pRow, pCol, currentPlayerMark);   // Places the players mark down on the board
-            game.printBoard();            // Prints the board
+        	//Update the board with the marker
+            tttBoard.placeMark(pRow, pCol, currentPlayerMark);   // Places the players mark down on the board
+            //Print the board state
+            tttBoard.printBoard();            // Prints the board
 
             System.out.println("\n");		//Buffer space
             
             // If a player wins end the game, else change players
-            if((game.checkForWin() == true) && (currentPlayerMark == 'X'))
+            if((tttBoard.checkForWin() == true) && (currentPlayerMark == 'X'))
             {
                 System.out.println("Player X wins!");
                 break;
             }
-            else if((game.checkForWin() == true) && (currentPlayerMark == 'O'))
+            else if((tttBoard.checkForWin() == true) && (currentPlayerMark == 'O'))
             {
                 System.out.println("Player O wins!");
                 break;
@@ -99,14 +97,18 @@ public class TicTacToePlayer implements BaseGame
                     currentPlayerMark = 'X';
             }
 
-        }while(game.isBoardFull() == false);
+        }while(tttBoard.isBoardFull() == false);
 
-        if(game.isBoardFull() == true && game.checkForWin() == false)
+        if(tttBoard.isBoardFull() == true && tttBoard.checkForWin() == false)
         {
             System.out.println("Tie Game!");
         }
     }
 
+    /**
+     * Implemented from BasicGame.
+     * Prints basic instructions.
+     */
     public void printInstructions()
     {
         String instructions =
@@ -121,7 +123,7 @@ public class TicTacToePlayer implements BaseGame
     }
 
     /**
-     *
+     * Minimax-esque algorithm to find the AI's  next move.
      */
     private int[] makeAIMove(TicTacToe board, char aiMarker, int depth)
     {
@@ -198,6 +200,12 @@ public class TicTacToePlayer implements BaseGame
 
     }
 
+    /**
+     * Calculates a heuristic for the given board
+     * @param board - The board to evaluate
+     * @param positiveMarker - The marker that counts positively toward the score
+     * @return
+     */
     private int calcScore(TicTacToe board, char positiveMarker)
     {
         int total = 0;
@@ -205,19 +213,22 @@ public class TicTacToePlayer implements BaseGame
         for(int i = 0; i < 3; i++)
         {
             total += calcRowScore(board, i, positiveMarker);
-            // System.out.println("Score @ row = " + i + " : " + total);
             total += calcColScore(board, i, positiveMarker);
-            // System.out.println("Score @ col = " + i + " : " + total);
         }
 
         total += calcDiagonalScore1(board, positiveMarker);
         total += calcDiagonalScore2(board, positiveMarker);
-        // System.out.println("Score after diagonals = " + total);
-
 
         return total;
     }
 
+    /**
+     * 
+     * @param ttt
+     * @param rowNum
+     * @param positiveMarker
+     * @return
+     */
     private int calcRowScore(TicTacToe ttt, int rowNum, char positiveMarker)
     {
         char[][] board = ttt.getBoard();

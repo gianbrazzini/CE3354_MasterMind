@@ -132,6 +132,9 @@ public class TicTacToe {
         return false;
     }
 
+    /**
+     * Deep copy of the board array
+     */
     public TicTacToe cloneGame()
     {
         TicTacToe ttt = new TicTacToe();

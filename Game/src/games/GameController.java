@@ -25,15 +25,17 @@ class GameController
         boolean exit = false;
 
         Scanner pInput = new Scanner(System.in);
+        //Repeat until user inputs "exit"
         do
         {
+        	//Print game options
             System.out.println("Please choose a game option:");
-
             for(String option : gameOptions)
             {
                 System.out.println(option);
             }
 
+            //Player chooses option
             String input = pInput.next();
 
             int gameNum = -1;
@@ -64,12 +66,13 @@ class GameController
             exit = input.equals(CMD_EXIT);
             currentGame = null;
 
+            //Create and start game based on user input
             if(exit == false)
             {
                 switch(gameNum)
                 {
                     case 0:
-                        //currentGame = new Mastermind();
+//                        currentGame = new MasterMindGame();
                         break;
                     case 1:
                         currentGame = new SEHangman();
