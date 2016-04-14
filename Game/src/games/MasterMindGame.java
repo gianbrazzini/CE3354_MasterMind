@@ -1,3 +1,5 @@
+package games;
+
 import java.util.*;
 
 public class MasterMindGame {
