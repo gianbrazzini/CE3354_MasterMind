@@ -147,13 +147,28 @@ class TicTacToe {
 
 }
 
-public class TicTacToePlayer
+public class TicTacToePlayer implements BaseGame
 {
-    public static void main(String[] args) {
-        new TicTacToePlayer();
-    }
+    public static final int AI_OFF = 0,
+                            AI_SMART = 1,
+                            AI_DUMB = 2;
+
+    // 0 = off
+    // 1 = on (perfect)
+    // 2 = on (dumb)
+    int aiStatus;
 
     public TicTacToePlayer()
+    {
+        aiStatus = 1;
+    }
+
+    public TicTacToePlayer(int aiStatus)
+    {
+        this.aiStatus = aiStatus;
+    }
+
+    public void startGame()
     {
         TicTacToe game = new TicTacToe();
         Scanner pInput = new Scanner(System.in);
@@ -200,7 +215,6 @@ public class TicTacToePlayer
                     currentPlayerMark = 'X';
             }
 
-            System.out.println("\nCurrent score: " + calcScore(game, 'X') + "\n");
             if(currentPlayerMark == 'X')
             {
                 int[] nextMove = makeAIMovePerfect(game, 'X', 0);
@@ -213,6 +227,11 @@ public class TicTacToePlayer
         {
             System.out.println("Tie Game!");
         }
+    }
+
+    public void printInstructions()
+    {
+        System.err.println("Please implement 'printInstructions' in the TicTacToePlayer.java file!");
     }
 
     public void makeAIMove(TicTacToe board, char aiMarker, boolean perfectAI)
