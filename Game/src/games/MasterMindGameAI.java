@@ -67,12 +67,9 @@ public class MasterMindGameAI implements BaseGame {
 				inputcopy.add(input.get(i));
 			}
 			
+			numcolorcorrect = 0;
+			numcolorwrong = 0;
 			for (int j = 0; j < input.size(); j++) {
-				numcolorcorrect = 0;
-				numcolorwrong = 0;
-
-				System.out.println(inputcopy);
-
 				if (inputcopy.get(j).equals(ramcolor.get(j)))
 				{
 					inputcopy.set(j, "-1");
@@ -90,11 +87,13 @@ public class MasterMindGameAI implements BaseGame {
 					numcolorwrong++;
 				}
 
+			}
 
-				if(numcolorcorrect > 3) {
-					System.out.println(ramcolor);
-					System.out.println("Congrats you won with: " + input);
-				}
+			if(numcolorcorrect > 3) {
+				System.out.println(ramcolor);
+				System.out.println("Congrats you won with: " + input);
+				toExit = true;
+				break;
 			}
 
 			System.out.println();
