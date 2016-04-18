@@ -131,8 +131,6 @@ public class MasterMindGameAI implements BaseGame {
 
 		System.out.println();
 
-		System.out.println(startexitoption.equals("exit"));
-
 		if(startexitoption.equals("exit")) toExit = true;
 
 		while (!toExit) {
