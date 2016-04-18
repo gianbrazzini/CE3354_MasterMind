@@ -7,7 +7,7 @@ public class MasterMindGameAI implements BaseGame {
 		System.out.println("Welcome to Master Mind Game");
 		System.out.println("=========================================================================================");
 		System.out.println("Here are the instruction.");
-		System.out.println("The rule and instruction is simiple. Try to guess what color and order the AI has chosen." +
+		System.out.println("The rule and instruction is simple. Try to guess what color and order the AI has chosen." +
 						   "\nYou have twelve turns to figure it out!" +
 						   "\n" +
 						   "\nThe color option is (r) Red, (g) Green, (b) Blue, (y) Yellow. Enter those letters to" +
