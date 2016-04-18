@@ -72,7 +72,7 @@ class GameController
                 switch(gameNum)
                 {
                     case 0:
-//                        currentGame = new MasterMindGame();
+                        currentGame = new MasterMindGameAI();
                         break;
                     case 1:
                         currentGame = new SEHangman();
