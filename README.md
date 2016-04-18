@@ -2,14 +2,16 @@
 
 ###Compiling
 
-  1. Navigate to the "games" package in the src folder.
+  1. Navigate to the location which contians the "games" package in the src folder.
   2. type the following command into the terminal:
         "javac BaseGame.java GameController.java GetWordList.java MasterMindGameAI.java SEHangman.java TicTacToe.java TicTacToePlayer.java Validate.java"
   3. You should see .class files now
+  4. Next, type the following command into the terminal:
+        "jar cfe Games.jar games.GameController games\*.class"
 
 
 ###Running
-  1. 
+  1. Type the command "java -jar Games.jar" into the terminal.
 
 ###Description
 There are three games available to play:
