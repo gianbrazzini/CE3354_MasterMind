@@ -11,7 +11,11 @@ public class MasterMindGameAI implements BaseGame {
 						   "\nYou have twelve turns to figure it out!" +
 						   "\n" +
 						   "\nThe color option is (r) Red, (g) Green, (b) Blue, (y) Yellow. Enter those letters to" +
-						   "\nguess. You have twelve turns to guess what combination the computer has chosen. GL");
+						   "\nguess." + 
+						   "\n'Correct' means you chose the right color and position." + 
+						   "\n'Maybe' means you chose the right color, but wrong position" + 
+						   "\n'Wrong' means you chose the wrong color and wrong position" + 
+						   "\n\nYou have twelve turns to guess what combination the computer has chosen. GL");
 		System.out.println("=========================================================================================");
 	}
 
