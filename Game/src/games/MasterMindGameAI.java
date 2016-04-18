@@ -59,7 +59,7 @@ public class MasterMindGameAI implements BaseGame {
 			int numcolorcorrect = 0;
 			int numcolorwrong = 0;
 			int maybe = 0;
-
+			System.out.println("Turn " + turncounter);
 			inputcopy.clear();
 
 			for (int i = 0; i < 4; i++) {
