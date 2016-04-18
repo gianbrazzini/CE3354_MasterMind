@@ -4,7 +4,7 @@
 
   1. Navigate to the location which contians the "games" package in the src folder.
   2. type the following command into the terminal:
-        "javac BaseGame.java GameController.java GetWordList.java MasterMindGameAI.java SEHangman.java TicTacToe.java TicTacToePlayer.java Validate.java"
+        "javac games\*"
   3. You should see .class files now
   4. Next, type the following command into the terminal:
         "jar cfe Games.jar games.GameController games\*.class"
