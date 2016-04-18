@@ -1,8 +1,9 @@
+package games;
 import java.util.*;
 
-public class MasterMindGameAI {
+public class MasterMindGameAI implements BaseGame {
 
-	public void printInstruction() {
+	public void printInstructions() {
 		System.out.println("Welcome to Master Mind Game");
 		System.out.println("=========================================================================================");
 		System.out.println("Here are the instruction.");
